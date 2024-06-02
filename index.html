@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>A simple Three.JS App</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <script type="text/javascript" src="files/extras/jquery.min.1.7.js"></script>
+    <script type="text/javascript" src="files/extras/jquery-ui-1.8.20.custom.min.js"></script>
+    <script type="text/javascript" src="files/extras/jquery.mousewheel.min.js"></script>
+    <script type="text/javascript" src="files/extras/modernizr.2.5.3.min.js"></script>
+    <script type="text/javascript" src="files/lib/hash.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js"></script>
+    <script src="files/particles/particles.js" defer></script>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.skypack.dev/three@0.129.0/build/three.module.js"
+        }
+      }
+      </script>      
+
+  </head>
+
+  <body>
+
+    <main>
+      <div id="container3D"></div>
+    </main>
+    
+    <canvas class="particles" data-color="#FCE499"></canvas>
+
+    <div id="intro">HEAVENS OF THE UNDERWORLD</div>
+    <div id="author">DMITRY GANOTSKIY</div>
+
+    <!-- <div id="canvas">
+      <div id="book-zoom">
+        <div class="sample-docs">
+          <div class="hard"></div>
+          <div class="hard"></div>
+          <div class="hard p29"></div>
+          <div class="hard p30"></div>
+        </div>
+      </div>
+    </div> -->
+    
+
+    <script type="module" src="js/main.js"></script>
+    <!-- <script type="text/javascript" src="flip.js"></script> -->
+  </body>
+</html>

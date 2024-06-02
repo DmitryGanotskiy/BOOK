@@ -1,0 +1,56 @@
+  body {
+  }
+  html, body {
+    overflow-x: hidden;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @font-face {
+    font-family: merriweather-italic-3d;
+    src: url(/fonts/merriweather-regular-italic.woff2);
+  }
+
+  header {
+    margin-top: 3em;
+    text-align: center;
+    color: white;
+  }
+  
+  header h1 {
+    font-size: 2em;
+    font-weight: 900;
+  }
+  
+  #container3D canvas {
+    width: 100vw !important;
+    height: 100vh !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  canvas.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10; /* Ensure it's above other elements */
+}
+
+#intro, #author{
+  position: fixed;
+  color: aliceblue; /* This will be the color of the text */
+  font-size: 6vw;
+  top: 50vh;
+  left: 50%;
+  width: 20%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  opacity: 0;
+  text-shadow: 0 0 15px rgb(255, 230, 0);
+  transition: opacity 2s ease-in-out;
+}
