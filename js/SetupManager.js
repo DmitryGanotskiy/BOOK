@@ -28,11 +28,11 @@ class SetupManager {
         this.controls.minAzimuthAngle = -Math.PI / 3;
 
         this.scene.fog = new THREE.Fog('black', -10, 20);
-        this.camera.position.set(0, -5, 15);
+        this.camera.position.set(0, -1, 15);
+        this.controls.target.set(0, -1, -10);  // Ensure the initial target is near the table
 
         window.addEventListener("resize", () => this.onWindowResize());
         window.addEventListener("wheel", (event) => this.onMouseWheel(event));
-
     }
 
     onWindowResize() {

@@ -6,6 +6,8 @@ class ObjectManager {
         this.scene = scene;
         this.clickableObjects = [];
         this.table = null;
+        this.holder = null;
+        this.laptop = null;
     }
 
     loadModel(path, controls) {
@@ -23,13 +25,16 @@ class ObjectManager {
                     object.rotation.y = Math.PI / 2;
                     this.table = object;
 
-                    controls.target.copy(object.position);
-                    controls.target.y += 3;
                 } else if (path === "laptop") {
                     object.scale.set(0.02, 0.02, 0.02);
                     object.position.set(1, -2.1, -10);
                     object.rotation.y = Math.PI * 2;
-                    this.table = object;
+                    this.laptop = object;
+                } else if (path === "holder") {
+                    object.scale.set(0.02, 0.02, 0.02);
+                    object.position.set(-3, -4.1, -10);
+                    object.rotation.y = Math.PI * 2;
+                    this.holder = object;
                 }
                 this.scene.add(object);
                 console.log("Model loaded:", path);
@@ -64,6 +69,10 @@ class ObjectManager {
 
     getTable() {
         return this.table;
+    }
+
+    getHolder() {
+        return this.holder;
     }
 }
 

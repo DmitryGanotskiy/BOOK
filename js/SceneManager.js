@@ -21,6 +21,7 @@ class SceneManager {
 
         this.clock = new THREE.Clock();
         this.cameraAtImage = false;
+        this.isTransitioning = false; // Flag to track transition status
 
         this.paths.forEach(path => {
             this.objectManager.loadImages(path);
@@ -71,8 +72,12 @@ class SceneManager {
                     .to(this.previousCameraPosition, 1000)
                     .easing(TWEEN.Easing.Quadratic.Out)
                     .onUpdate(() => {
-                        this.setupManager.controls.target.copy(this.objectManager.getTable().position);
-                        this.setupManager.controls.target.y = -1;
+                        const table = this.objectManager.getTable();
+                        if (table) {
+                            this.setupManager.controls.target.copy(table.position);
+                            this.setupManager.controls.target.y = -1;
+                        }
+                        this.setupManager.controls.target.set(0, -1, -10);
                     })
                     .start();
             }
@@ -80,14 +85,26 @@ class SceneManager {
     }
 
     lookTables() {
-        if (this.setupManager.camera.position.z <= -5) {
-            new TWEEN.Tween(this.setupManager.camera.position)
-                .to({ x: 0, y: -1.2, z: -10 }, 50)
-                .easing(TWEEN.Easing.Quadratic.Out)
-                .onUpdate(() => {
-                    this.setupManager.controls.target.copy(this.objectManager.getTable().position);
-                })
-                .start();
+        if (this.setupManager.camera.position.z <= -5 && !this.isTransitioning) {
+            this.isTransitioning = true; // Set flag to true
+            const book = document.getElementById('canvas');
+            const holder = this.objectManager.getHolder();
+            if (holder) {
+                new TWEEN.Tween(this.setupManager.camera.position)
+                    .to({ x: -3, y: -1.5, z: -9.4 }, 2000)
+                    .easing(TWEEN.Easing.Quadratic.Out)
+                    .onUpdate(() => {
+                        this.setupManager.controls.target.copy(holder.position);
+                        this.setupManager.controls.target.y += 2;
+                        console.log('Camera Position:', this.setupManager.camera.position);
+                        console.log('Controls Target:', this.setupManager.controls.target);
+                    })
+                    .onComplete(() => {
+                        book.style.opacity = "1";
+                        this.isTransitioning = false; // Reset flag
+                    })
+                    .start();
+            }
         }
     }
 
